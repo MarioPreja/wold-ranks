@@ -99,7 +99,7 @@ const Country = ({ country }) => {
               <div className={styles.details_panel_borders_container}>
                 {borders &&
                   borders.map(({ flag, name, alpha3Code }) => (
-                    <Link href={`/country/${alpha3Code}`}>
+                    <Link href={`/country/${alpha3Code}`} key={name} >
                       <div className={styles.details_panel_borders_country}>
                         <img src={flag} alt={name}></img>
 
