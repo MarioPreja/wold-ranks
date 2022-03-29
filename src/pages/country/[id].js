@@ -18,7 +18,7 @@ const Country = ({ country }) => {
   const getBorders = async () => {
     if (country.borders) {
       const borders = await Promise.all(
-        country.borders.map((border) => getCountry(border))
+       country.borders &&  country.borders.map((border) => getCountry(border))
       );
 
       setBorders(borders);
@@ -68,14 +68,14 @@ const Country = ({ country }) => {
             <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Languages</div>
               <div className={styles.details_panel_value}>
-                {country.languages.map(({ name }) => name).join(', ')}
+                {country.languages && country.languages.map(({ name }) => name).join(', ')}
               </div>
             </div>
 
             <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Currencies</div>
               <div className={styles.details_panel_value}>
-                {country.currencies.map(({ name }) => name).join(', ')}
+                {country.currencies  && country.currencies.map(({ name }) => name).join(', ')}
               </div>
             </div>
 
@@ -124,7 +124,7 @@ export const getStaticPaths = async () => {
   const res = await fetch('https://restcountries.com/v2/all');
   const countries = await res.json();
 
-  const paths = countries.map((country) => ({
+  const paths =countries && countries.map((country) => ({
     params: { id: country.alpha3Code },
   }));
 
